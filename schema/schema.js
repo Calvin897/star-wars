@@ -5,7 +5,8 @@ const {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLString,
-  GraphQLList
+  GraphQLList,
+  GraphQLInt
 } = graphql;
 
 //planet type
@@ -45,10 +46,15 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     people: {
       type: GraphQLList(PeopleType),
+      args: { page: { type: GraphQLInt } },
       resolve(parentValue, args) {
-        return axios
-          .get(`http://swapi.dev/api/people`)
-          .then(res => res.data.results);
+        return (
+          axios
+            // .get(`http://swapi.dev/api/people`)
+            .get(`https://swapi.dev/api/people/?page=${args.page}`)
+
+            .then(res => res.data.results)
+        );
       }
     },
     person: {
@@ -58,11 +64,22 @@ const RootQuery = new GraphQLObjectType({
         return axios
           .get(`http://swapi.dev/api/people/?search=${args.name}`)
           .then(res => {
-            console.log(res.data.results[0].name);
             return res.data.results[0];
           });
       }
     }
+    // pagination: {
+    //   type: GraphQLList(PeopleType),
+    //   args: { page: { type: GraphQLInt } },
+    //   resolve(parentValue, args) {
+    //     return axios
+    //       .get(`https://swapi.dev/api/people/?page=${args.page}`)
+    //       .then(res => {
+    //         console.log(res.data.results);
+    //         return res.data.results;
+    //       });
+    //   }
+    // }
   }
 });
 
