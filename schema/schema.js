@@ -56,7 +56,7 @@ const RootQuery = new GraphQLObjectType({
       args: { name: { type: GraphQLString } },
       resolve(parentValue, args) {
         return axios
-          .get(`http://swapi.dev/api/people?search=${args.name}`)
+          .get(`http://swapi.dev/api/people/?search=${args.name}`)
           .then(res => {
             console.log(res.data.results[0].name);
             return res.data.results[0];
