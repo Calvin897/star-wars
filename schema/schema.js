@@ -30,9 +30,7 @@ const PeopleType = new GraphQLObjectType({
     homeworld: {
       type: PlanetType,
       resolve(parentValue, args) {
-        console.log(parentValue.homeworld);
         return axios.get(parentValue.homeworld).then(res => {
-          console.log(res);
           return res.data;
         });
       }
@@ -68,18 +66,6 @@ const RootQuery = new GraphQLObjectType({
           });
       }
     }
-    // pagination: {
-    //   type: GraphQLList(PeopleType),
-    //   args: { page: { type: GraphQLInt } },
-    //   resolve(parentValue, args) {
-    //     return axios
-    //       .get(`https://swapi.dev/api/people/?page=${args.page}`)
-    //       .then(res => {
-    //         console.log(res.data.results);
-    //         return res.data.results;
-    //       });
-    //   }
-    // }
   }
 });
 

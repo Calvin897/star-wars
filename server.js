@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const { graphqlHTTP } = require("express-graphql");
 const cors = require("cors");
 const schema = require("./schema/schema");
+const path = require("path");
 
 const app = express();
 
@@ -16,6 +17,12 @@ app.use(
     graphiql: true
   })
 );
+
+app.use(express.static("public"));
+
+app.get("*", (req, res) => {
+  res.sendfile(path.resolve(__dirname, "public", "index.html"));
+});
 
 const PORT = process.env.PORT || 4000;
 
