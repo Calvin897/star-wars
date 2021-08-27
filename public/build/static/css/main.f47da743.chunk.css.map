@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/PeopleList/style.css"],"names":[],"mappings":"AAAA,MACE,sBACF","file":"main.f47da743.chunk.css","sourcesContent":[".hide {\n  display: none !important;\n}\n"]}
