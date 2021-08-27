@@ -15,9 +15,7 @@ const PeopleList = () => {
   const [pageId, setPageId] = useState(1);
   // const initialState =
   // location.state.pageId === undefined ? 1 : location.state.pageId * 1;
-  const [pageView, setPageView] = useState(
-    location.state.pageId === undefined ? 1 : location.state.pageId * 1
-  );
+  const [pageView, setPageView] = useState(1);
 
   const { loading, data, error } = useQuery(GET_PEOPLE, {
     variables: { page: page }
