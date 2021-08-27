@@ -50,7 +50,6 @@ const RootQuery = new GraphQLObjectType({
           axios
             // .get(`http://swapi.dev/api/people`)
             .get(`https://swapi.dev/api/people/?page=${args.page}`)
-
             .then(res => res.data.results)
         );
       }

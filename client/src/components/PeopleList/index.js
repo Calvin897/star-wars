@@ -13,13 +13,15 @@ const PeopleList = () => {
   const [page, setPage] = useState(1);
   const location = useLocation();
   const [pageId, setPageId] = useState(1);
-  // const initialState = location.state.pageId ? location.state.pageId * 1 : 1;
-  const [pageView, setPageView] = useState(1);
+  // const initialState =
+  // location.state.pageId === undefined ? 1 : location.state.pageId * 1;
+  const [pageView, setPageView] = useState(
+    location.state.pageId === undefined ? 1 : location.state.pageId * 1
+  );
 
   const { loading, data, error } = useQuery(GET_PEOPLE, {
     variables: { page: page }
   });
-  console.log(data);
 
   useEffect(() => {
     if (pageView > 1) {
